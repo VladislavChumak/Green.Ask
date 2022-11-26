@@ -26,7 +26,6 @@ public class RegistrationController {
 
     @PostMapping("/registration")
     public String addUser(@ModelAttribute("userForm") @Valid User userForm, BindingResult bindingResult, Model model) {
-
         if (bindingResult.hasErrors()) {
             return "registration";
         }
@@ -34,7 +33,7 @@ public class RegistrationController {
             model.addAttribute("usernameError", "Пользователь с таким именем уже существует");
             return "registration";
         }
-
-        return "redirect:/login&"+userForm.getMail();
+        System.out.println("redirect:/login?"+userForm.getMail());
+        return "redirect:/login?"+userForm.getMail();
     }
 }
