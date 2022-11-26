@@ -58,6 +58,7 @@
           <div class="form-floating">
             <label for="phone">Код подтверждения с указанного адреса электронной почты</label>
             <input type="text" class="form-control w-75 mx-auto" name="code" id="code" placeholder="Код">
+            <input type="hidden" name="email" id="email" value="">
           </div>        
 
           <button class="w-75 btn btn-lg btn-primary" style="margin-top: 30px;" type="submit">Войти</button>
@@ -76,6 +77,12 @@
     <script src="dist/js/bootstrap.min.js"></script>
     <script src="assets/js/vendor/holder.min.js"></script>
     <script>
+
+      let params = (new URL(document.location)).searchParams; 
+      let email = params.get("email");
+
+      $('#email').val(email);
+
       // Example starter JavaScript for disabling form submissions if there are invalid fields
       (function() {
         'use strict';
