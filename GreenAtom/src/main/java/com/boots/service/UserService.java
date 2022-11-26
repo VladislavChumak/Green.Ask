@@ -24,7 +24,7 @@ public class UserService implements UserDetailsService {
 	@Autowired
     private BCryptPasswordEncoder bCryptPasswordEncoder;
 	
-	public User user;
+	private User user;
 	@Override
 	public UserDetails loadUserByUsername(String mail) throws UsernameNotFoundException {
 		System.out.println(mail);
@@ -74,6 +74,7 @@ public class UserService implements UserDetailsService {
     }
     
     public boolean isVacancyActive(String vacancy_name) {
+    	System.out.print(user != null);
     	if(user != null) {
     		return 
 				em.createQuery("Select u From User u, users_vacancy uv, vacancy v "

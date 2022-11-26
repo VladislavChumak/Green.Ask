@@ -16,11 +16,13 @@ public class SelectControler {
     @Autowired
     private UserService userService;
 
+    @GetMapping("/select")
+    public String userList(Model model) {
+        return "select";
+    }
+    
     @GetMapping(value = "/isVacancyActive/{name}")
     public ResponseEntity<?> isVacancyActive(@PathVariable(name = "name", required = true) String vacancy_name) {
-    	if(userService.user == null)return new ResponseEntity<>(HttpStatus.FORBIDDEN);
-    	else {
-    		return userService.isVacancyActive(vacancy_name) ? new ResponseEntity<>(HttpStatus.OK) : new ResponseEntity<>(HttpStatus.FOUND);
-    	}
+    	return userService.isVacancyActive(vacancy_name) ? new ResponseEntity<>(HttpStatus.OK) : new ResponseEntity<>(HttpStatus.FOUND);
     }
 }
