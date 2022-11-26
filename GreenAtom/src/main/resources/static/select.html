@@ -71,7 +71,7 @@
             <div class="card-text card_text_main">ESB — это программное обеспечение, благодаря которому возможен обмен данными между разными информационными системами предприятия. Иначе оно называется интеграционной или сервисной шиной.</div>
             <div class="row">
               <div class="card_test_res">Результат: <span>0</span> из <span>30</span></div>
-              <button type="button" class="btn btn-warning card_test_btn">Пройти тест</button>
+              <button type="button" id="button_1" class="btn btn-warning card_test_btn">Пройти тест</button>
             </div>
           </div>  
         </div>
@@ -85,7 +85,7 @@
 Ты получишь возможность проверить свои навыки анализа информации, сообразительности, принятия решений, работы с запросами от пользователей.</div>
             <div class="row">
               <div class="card_test_res">Результат: <span>0</span> из <span>30</span></div>
-              <button type="button" class="btn btn-warning card_test_btn">Пройти тест</button>
+              <button type="button" id="button_2" class="btn btn-warning card_test_btn">Пройти тест</button>
             </div>
           </div>  
         </div>
@@ -97,7 +97,7 @@
             <div class="card-text card_text_main">Решение SAP BI (SAP Business Intelligence) - система бизнес-анализа, позволяющая осуществлять стратегический анализ данных и поддержку процесса принятия управленческих решений в компании. Предназначена для предоставления доступа и обработки информации, содержащейся в различных системах или базах данных  организаций, ее анализа.</div>
             <div class="row">
               <div class="card_test_res">Результат: <span>0</span> из <span>30</span></div>
-              <button type="button" class="btn btn-warning card_test_btn">Пройти тест</button>
+              <button type="button" id="button_3" class="btn btn-warning card_test_btn">Пройти тест</button>
             </div>
           </div>  
         </div>
@@ -111,7 +111,7 @@
 Ты научишься создавать, настраивать и кастомизировать несложные сайты, а также на практике попробуешь работу в scrum-команде. Программа подходит для всех, кто начинает делать первые шаги к построению карьеры в области IT.</div>
             <div class="row">
               <div class="card_test_res">Результат: <span>0</span> из <span>30</span></div>
-              <button type="button" class="btn btn-warning card_test_btn">Пройти тест</button>
+              <button type="button" id="button_4" class="btn btn-warning card_test_btn">Пройти тест</button>
             </div>
           </div>  
         </div>
@@ -123,7 +123,7 @@
             <div class="card-text card_text_main">ESB — это программное обеспечение, благодаря которому возможен обмен данными между разными информационными системами предприятия. Иначе оно называется интеграционной или сервисной шиной.</div>
             <div class="row">
               <div class="card_test_res">Результат: <span>0</span> из <span>30</span></div>
-              <button type="button" class="btn btn-warning card_test_btn">Пройти тест</button>
+              <button type="button" id="button_5" class="btn btn-warning card_test_btn">Пройти тест</button>
             </div>
           </div>  
         </div>
@@ -137,7 +137,7 @@
 На марафоне </div>
             <div class="row">
               <div class="card_test_res">Результат: <span>0</span> из <span>30</span></div>
-              <button type="button" class="btn btn-warning card_test_btn">Пройти тест</button>
+              <button type="button" id="button_6" class="btn btn-warning card_test_btn">Пройти тест</button>
             </div>
           </div>  
         </div>
@@ -154,7 +154,34 @@
     <script src="dist/js/bootstrap.min.js"></script>
     <script src="assets/js/vendor/holder.min.js"></script>
     <script>
-      // Example starter JavaScript for disabling form submissions if there are invalid fields
+
+      let arr = new Array();
+      arr[0] = "Система ESB";
+      arr[1] = "Case Lab SUPPORT";
+      arr[2] = "Система SAP";
+      arr[3] = "Case Lab WEB";
+      arr[4] = "Case Lab JavaScript";
+      arr[5] = "Программа 1С";
+
+
+      for (var i = 1; i < 6; i++) {
+        // создание экземпляра объекта XMLHttpRequest
+        const xhr = new XMLHttpRequest();
+        // настройка запроса (false - синхронный запрос)
+        xhr.open('GET', "isVacancyActive", false);
+        // отправка запроса
+        xhr.send(arr[i-1]);
+        // получение ответа и отображение его в #result
+        let first_able = xhr.response;
+
+        if(xhr.response == false) {
+            document.getElementById("button_"+i).setAttribute("disabled", "disabled");
+
+            // Отправляем запрос на получение результатов
+
+        } 
+      }      
+
       (function() {
         'use strict';
 
