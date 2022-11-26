@@ -72,5 +72,9 @@ public class UserService implements UserDetailsService {
         return em.createQuery("SELECT u FROM User u", User.class).getResultList();
     }
     
+    public boolean isVacancyActive(String vacancy_name) {
+    	
+    	return true;
+    }
     
 }
