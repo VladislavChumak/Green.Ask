@@ -1,18 +1,17 @@
-
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ page contentType="text/html; charset=utf-8" pageEncoding="utf-8" %>
 <!doctype html>
 <html lang="en">
   <head>
+    <link href="/dist/css/bootstrap.min.css" type="text/css">
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="">
-    <link rel="icon" href="/docs/4.0/assets/img/favicons/favicon.ico">
-
+    <link rel="icon" href="/resourcse/docs/4.0/assets/img/favicons/favicon.ico">
     <title>Green.Ask</title>
-
-    <!-- Bootstrap core CSS -->
-    <link href="dist/css/bootstrap.min.css" rel="stylesheet">
-  </head>
+</head>
 <style>
   .
 </style>
@@ -21,7 +20,7 @@
   <div class="navbar navbar-white bg-white shadow-sm">
     <div class="container">
       <a href="#" class="navbar-brand d-flex align-items-center">
-        <img src="assets/img/logo.svg" alt="" height="50">
+        <img src="WEB-INF/assets/img/logo.svg" alt="" height="50">
       </a>
       <div class="text-black font-weight-bold">
         IT-кадры для атомной области
@@ -31,7 +30,7 @@
 </header>
     <div class="container">
       <div class="py-5 text-center">
-        <img class="d-block mx-auto mb-4" src="assets/img/main.svg" alt="" width="500">
+        <img class="d-block mx-auto mb-4" src="/assets/img/main.svg" alt="" width="500">
         <h2>Всего 4 шага до успеха</h2>
         <p class="lead">Зарегистрируйтесь, пройдите тест, получите баллы и возможность стажироваться</p>
       </div>      
@@ -107,19 +106,19 @@
     <div class="container" style="margin-top: 30px;">
     <div class="row"> 
       <div class="col-md-6 col-sm-12 form-signin authform">
-        <form method="POST" action="/registration" modelAttribute="userForm">
+        <form method="POST" modelAttribute="userForm">
           <h1 class="h3 mb-3 fw-normal mr-auto ml-auto">Введите данные в форме</h1>
           <div class="form-floating">
-            <label for="fio">ФИО</label>
-            <input type="text" class="form-control w-75 mx-auto" name="fio" id="fio" placeholder="ФИО">
+            <label for="phone">ФИО</label>
+            <input type="text" class="form-control w-75 mx-auto" name="name" id="name" placeholder="ФИО">
           </div>          
           <div class="form-floating">
-            <label for="mail">Email</label>
-            <input type="mail" class="form-control w-75 mx-auto" name="mail" id="mail" placeholder="example@site.com">
+            <label for="email">Email</label>
+            <input type="email" class="form-control w-75 mx-auto" name="email" id="email" placeholder="example@site.com">
           </div>
           <div class="form-floating">
-            <label for="telephone_number">Номер телефона</label>
-            <input type="tel" class="form-control w-75 mx-auto" name="telephone_number" id="telephone_number" placeholder="+79880000000">
+            <label for="phone">Номер телефона</label>
+            <input type="tel" class="form-control w-75 mx-auto" name="phone" id="phone" placeholder="+79880000000">
           </div>       
 
           <button class="w-75 btn btn-lg btn-primary" style="margin-top: 30px;" type="submit">Войти</button>
@@ -142,9 +141,9 @@
 
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
     <script>window.jQuery || document.write('<script src="assets/js/vendor/jquery-slim.min.js"><\/script>')</script>
-    <script src="assets/js/vendor/popper.min.js"></script>
-    <script src="dist/js/bootstrap.min.js"></script>
-    <script src="assets/js/vendor/holder.min.js"></script>
+    <script src="/assets/js/vendor/popper.min.js"></script>
+    <script src="/dist/js/bootstrap.min.js"></script>
+    <script src="/assets/js/vendor/holder.min.js"></script>
     <script>
       // Example starter JavaScript for disabling form submissions if there are invalid fields
       (function() {
