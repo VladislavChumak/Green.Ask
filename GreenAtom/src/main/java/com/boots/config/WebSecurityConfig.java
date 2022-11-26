@@ -33,8 +33,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     
     @Override
     protected void configure(HttpSecurity httpSecurity) throws Exception {
-    	httpSecurity.authorizeRequests().antMatchers("/resources/**").permitAll();
-    	/*httpSecurity
+    	//httpSecurity.authorizeRequests().antMatchers("/resources/**").permitAll();
+    	httpSecurity
         .csrf()
             .disable()
             .authorizeRequests()
@@ -57,7 +57,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         .and()
             .logout()
             .permitAll()
-            .logoutSuccessUrl("/");*/
+            .logoutSuccessUrl("/");//*/
 
     }
 
