@@ -190,7 +190,7 @@
         xhr.send();
         // получение ответа и отображение его в #result
         let first_able = xhr.status;
-		if(first_able == 403 or first_able == 302) {
+		if(first_able == 403 || first_able == 302) {
             document.getElementById("button_"+i).setAttribute("disabled", "disabled");
 
             // Отправляем запрос на получение результатов
