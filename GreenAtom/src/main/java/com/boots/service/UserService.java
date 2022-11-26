@@ -23,10 +23,12 @@ public class UserService implements UserDetailsService {
     private EntityManager em;
 	@Autowired
     private BCryptPasswordEncoder bCryptPasswordEncoder;
+	
+	public User user;
 	@Override
-    public UserDetails loadUserByUsername(String mail) throws UsernameNotFoundException {
+	public UserDetails loadUserByUsername(String mail) throws UsernameNotFoundException {
 		System.out.println(mail);
-		User user = em.createQuery("SELECT u FROM User u WHERE u.mail = :mail", User.class)
+		user = em.createQuery("SELECT u FROM User u WHERE u.mail = :mail", User.class)
                 .setParameter("mail", mail).getSingleResult();
         if (user == null) {
         	System.out.println("Упали((");
@@ -64,7 +66,6 @@ public class UserService implements UserDetailsService {
             .setParameter("paramId", userId).executeUpdate();
         	return code == 1 ? true : false;
         }
-        
         return false;
     }
 
@@ -73,8 +74,21 @@ public class UserService implements UserDetailsService {
     }
     
     public boolean isVacancyActive(String vacancy_name) {
-    	
-    	return true;
+    	if(user != null) {
+    		return 
+				em.createQuery("Select u From User u, users_vacancy uv, vacancy v "
+						+ "Where u.userscod = uv.userscod "
+						+ "and u.userscod = :userscod "
+						+ "and uv.vacancyscod = v.vacancyscod "
+						+ "and v.vacancy_name = :vacancy_name", User.class)
+				.setParameter("userscod", user.getId())
+				.setParameter("vacancy_name", vacancy_name)
+				.getResultList().size()==0;
+    		
+    		//System.out.println(user.getFio());
+    		
+    	}
+    	else return false;
     }
     
 }

@@ -12,7 +12,7 @@ public class Role implements GrantedAuthority {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
     private Long rolescod;
-    private String role_code;
+    private String role_cod;
     private String role_name;
     @Transient
     @ManyToMany(mappedBy = "roles")
@@ -26,17 +26,17 @@ public class Role implements GrantedAuthority {
         this.rolescod = rolescod;
     }
 
-    public Role(Long rolescod, String role_code) {
+    public Role(Long rolescod, String role_cod) {
         this.rolescod = rolescod;
-        this.role_code = role_code;
+        this.role_cod = role_cod;
     }
 
 	public String getRole_code() {
-		return role_code;
+		return role_cod;
 	}
 
-	public void setRole_code(String role_code) {
-		this.role_code = role_code;
+	public void setRole_code(String role_cod) {
+		this.role_cod = role_cod;
 	}
 
 	public String getRole_name() {

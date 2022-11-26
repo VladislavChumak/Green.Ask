@@ -174,25 +174,25 @@
     <script>
 
       let arr = new Array();
-      arr[0] = "Система ESB";
+      arr[0] = "Case Lab ESB Express";
       arr[1] = "Case Lab SUPPORT";
-      arr[2] = "Система SAP";
+      arr[2] = "Case Lab SAP Express";
       arr[3] = "Case Lab WEB";
       arr[4] = "Case Lab JavaScript";
-      arr[5] = "Программа 1С";
+      arr[5] = "Case Lab 1C";
 
 
       for (var i = 1; i < 6; i++) {
         // создание экземпляра объекта XMLHttpRequest
         const xhr = new XMLHttpRequest();
-        // настройка запроса (false - синхронный запрос)
-        xhr.open('GET', "isVacancyActive", false);
+        // настройка запроса (false - 	синхронный запрос)
+        xhr.open('GET', "isVacancyActive/"+arr[i-1], false);
         // отправка запроса
-        xhr.send(arr[i-1]);
+		xhr.send();
         // получение ответа и отображение его в #result
-        let first_able = xhr.response;
-
-        if(xhr.response == false) {
+        let first_able = xhr.status;
+		console.log(first_able);
+        if(first_able == 403 or first_able == 302) {
             document.getElementById("button_"+i).setAttribute("disabled", "disabled");
 
             // Отправляем запрос на получение результатов
