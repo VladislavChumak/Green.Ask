@@ -41,8 +41,10 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
             //Доступ только для не зарегистрированных пользователей
             .antMatchers("/").not().fullyAuthenticated()
             //Доступ только для пользователей с ролью Администратор
-            //.antMatchers("/admin/**").hasRole("ADMIN")
-            //.antMatchers("/news").hasRole("USER")
+            .antMatchers("admin/**").hasRole("ADMIN")
+            .antMatchers("select/**").hasRole("USER")
+            .antMatchers("quiz/**").hasRole("USER")
+            .antMatchers("finally/**").hasRole("USER")
             //Доступ разрешен всем пользователей
             .antMatchers("/", "/resources/**").permitAll()
         //Все остальные страницы требуют аутентификации
@@ -51,8 +53,10 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
             //Настройка для входа в систему
             .formLogin()
             .loginPage("/login")
+            .usernameParameter("email")
+            .passwordParameter("code")
             //Перенарпавление на главную страницу после успешного входа
-            .defaultSuccessUrl("/")
+            .defaultSuccessUrl("/select")
             .permitAll()
         .and()
             .logout()

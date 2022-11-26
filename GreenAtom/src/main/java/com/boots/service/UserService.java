@@ -25,12 +25,14 @@ public class UserService implements UserDetailsService {
     private BCryptPasswordEncoder bCryptPasswordEncoder;
 	@Override
     public UserDetails loadUserByUsername(String mail) throws UsernameNotFoundException {
-    	User user = em.createQuery("SELECT u FROM User u WHERE u.mail = :mail", User.class)
+		System.out.println(mail);
+		User user = em.createQuery("SELECT u FROM User u WHERE u.mail = :mail", User.class)
                 .setParameter("mail", mail).getSingleResult();
         if (user == null) {
         	System.out.println("Упали((");
             throw new UsernameNotFoundException("User not found");
         }
+        System.out.println(user.getFio());
         user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
         return user;
     }
@@ -62,11 +64,13 @@ public class UserService implements UserDetailsService {
             .setParameter("paramId", userId).executeUpdate();
         	return code == 1 ? true : false;
         }
+        
         return false;
     }
 
     public List<User> usergtList(Long idMin) {
         return em.createQuery("SELECT u FROM User u", User.class).getResultList();
     }
-
+    
+    
 }

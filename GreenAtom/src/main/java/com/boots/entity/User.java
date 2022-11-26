@@ -24,11 +24,13 @@ public class User implements UserDetails{
     private String fio;
     private String telephone_number;
     private String mail;
-    private String vacancy;
     private String comment;
     private String code;
     @ManyToMany(fetch = FetchType.EAGER)
     private Set<Role> roles;
+    @ManyToMany(fetch = FetchType.EAGER)
+    private Set<Vacancy> vacancy;
+    
     
     public User() {}
 
@@ -63,14 +65,6 @@ public class User implements UserDetails{
     public void setMail(String mail) {
         this.mail= mail;
     }
-    
-	public String getVacancy() {
-		return vacancy;
-	}
-
-	public void setVacancy(String vacancy) {
-		this.vacancy = vacancy;
-	}
 
 	public String getComment() {
 		return comment;

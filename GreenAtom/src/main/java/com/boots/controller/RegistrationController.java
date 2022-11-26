@@ -33,7 +33,6 @@ public class RegistrationController {
             model.addAttribute("usernameError", "Пользователь с таким именем уже существует");
             return "registration";
         }
-        System.out.println("redirect:/login?"+userForm.getMail());
-        return "redirect:/login?"+userForm.getMail();
+        return "redirect:/login";
     }
 }
