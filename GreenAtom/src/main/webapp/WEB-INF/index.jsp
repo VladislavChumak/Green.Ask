@@ -165,7 +165,7 @@
 
     $('#q1').on('show.bs.collapse', function () {
       const image = document.querySelector('.q1i');
-      image.setAttribute('src', 'assets/img/123.gif');
+      image.setAttribute('src', 'assets/img/minus.svg');
     })
     $('#q1').on('hide.bs.collapse', function () {
       const image = document.querySelector('.q1i');
@@ -175,7 +175,7 @@
 
     $('#q2').on('show.bs.collapse', function () {
       const image = document.querySelector('.q2i');
-      image.setAttribute('src', 'assets/img/123.gif');
+      image.setAttribute('src', 'assets/img/minus.svg');
     })
     $('#q2').on('hide.bs.collapse', function () {
       const image = document.querySelector('.q2i');
@@ -184,7 +184,7 @@
 
     $('#q3').on('show.bs.collapse', function () {
       const image = document.querySelector('.q3i');
-      image.setAttribute('src', 'assets/img/123.gif');
+      image.setAttribute('src', 'assets/img/minus.svg');
     })
     $('#q3').on('hide.bs.collapse', function () {
       const image = document.querySelector('.q3i');
@@ -193,7 +193,7 @@
 
     $('#q4').on('show.bs.collapse', function () {
       const image = document.querySelector('.q4i');
-      image.setAttribute('src', 'assets/img/123.gif');
+      image.setAttribute('src', 'assets/img/minus.svg');
     })
     $('#q4').on('hide.bs.collapse', function () {
       const image = document.querySelector('.q4i');
@@ -202,7 +202,7 @@
 
     $('#q5').on('show.bs.collapse', function () {
       const image = document.querySelector('.q5i');
-      image.setAttribute('src', 'assets/img/123.gif');
+      image.setAttribute('src', 'assets/img/minus.svg');
     })
     $('#q5').on('hide.bs.collapse', function () {
       const image = document.querySelector('.q5i');
@@ -211,7 +211,7 @@
 
     $('#q6').on('show.bs.collapse', function () {
       const image = document.querySelector('.q6i');
-      image.setAttribute('src', 'assets/img/123.gif');
+      image.setAttribute('src', 'assets/img/minus.svg');
     })
     $('#q6').on('hide.bs.collapse', function () {
       const image = document.querySelector('.q6i');
