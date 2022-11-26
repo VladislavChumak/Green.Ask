@@ -4,14 +4,17 @@
 <!doctype html>
 <html lang="en">
   <head>
-    <link href="/dist/css/bootstrap.min.css" type="text/css">
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="">
-    <link rel="icon" href="/resourcse/docs/4.0/assets/img/favicons/favicon.ico">
+    <link rel="icon" href="assets/img/favic.ico">
+
     <title>Green.Ask</title>
-</head>
+
+    <!-- Bootstrap core CSS -->
+    <link href="dist/css/bootstrap.min.css" rel="stylesheet">
+  </head>
 <style>
   .
 </style>
@@ -20,7 +23,7 @@
   <div class="navbar navbar-white bg-white shadow-sm">
     <div class="container">
       <a href="#" class="navbar-brand d-flex align-items-center">
-        <img src="WEB-INF/assets/img/logo.svg" alt="" height="50">
+        <img src="assets/img/logo.svg" alt="" height="50">
       </a>
       <div class="text-black font-weight-bold">
         IT-кадры для атомной области
@@ -28,59 +31,73 @@
     </div>
   </div>
 </header>
+
+
     <div class="container">
       <div class="py-5 text-center">
-        <img class="d-block mx-auto mb-4" src="/assets/img/main.svg" alt="" width="500">
+        <img class="d-block mx-auto mb-4" src="assets/img/main.svg" alt="" width="500">
         <h2>Всего 4 шага до успеха</h2>
         <p class="lead">Зарегистрируйтесь, пройдите тест, получите баллы и возможность стажироваться</p>
       </div>      
     <div class="list-group list-group-radio d-grid gap-2 border-0 w-auto">
       <div class="position-relative">
-        <label class="list-group-item py-3 pe-5">
-          <strong class="fw-semibold">Система ESB</strong>
-          <span class="d-block small opacity-75">ESB — это программное обеспечение, благодаря которому возможен обмен данными между разными информационными системами предприятия. Иначе оно называется интеграционной или сервисной шиной.</span>
+        <label class="list-group-item py-3 pe-5" data-toggle="collapse" data-target="#q1">
+          <div class="d-flex justify-content-between">
+            <strong class="fw-semibold">Система ESB</strong><img src="assets/img/plus.svg" class="q1i" width="25px" height="25px;" alt=""/>
+          </div>
+          <div id="q1" class="collapse">ESB — это программное обеспечение, благодаря которому возможен обмен данными между разными информационными системами предприятия. Иначе оно называется интеграционной или сервисной шиной.</div>
         </label>
       </div>
 
       <div class="position-relative">
-        <label class="list-group-item py-3 pe-5">
-          <strong class="fw-semibold">Case Lab SUPPORT</strong>
-          <span class="d-block small opacity-75">Кейс лаборатория подойдет тебе, если ты только начинаешь свой путь в карьере, открыт для разных направлений в сфере IT и хочешь изучить изнутри то, на чем строится ИТ-инфраструктура.
+        <label class="list-group-item py-3 pe-5" data-toggle="collapse" data-target="#q2">
+          <div class="d-flex justify-content-between">
+            <strong class="fw-semibold">Case Lab SUPPORT</strong><img src="assets/img/plus.svg" class="q2i" width="25px" height="25px;" alt=""/>
+          </div>          
+          <div id="q2" class="collapse">Кейс лаборатория подойдет тебе, если ты только начинаешь свой путь в карьере, открыт для разных направлений в сфере IT и хочешь изучить изнутри то, на чем строится ИТ-инфраструктура.
 <br>
-Ты получишь возможность проверить свои навыки анализа информации, сообразительности, принятия решений, работы с запросами от пользователей.</span>
+Ты получишь возможность проверить свои навыки анализа информации, сообразительности, принятия решений, работы с запросами от пользователей.</div>
         </label>
       </div>
 
       <div class="position-relative">
-        <label class="list-group-item py-3 pe-5">
-          <strong class="fw-semibold">Система SAP</strong>
-          <span class="d-block small opacity-75">Решение SAP BI (SAP Business Intelligence) - система бизнес-анализа, позволяющая осуществлять стратегический анализ данных и поддержку процесса принятия управленческих решений в компании. Предназначена для предоставления доступа и обработки информации, содержащейся в различных системах или базах данных  организаций, ее анализа. </span>
+        <label class="list-group-item py-3 pe-5" data-toggle="collapse" data-target="#q3">
+          <div class="d-flex justify-content-between">
+            <strong class="fw-semibold">Система SAP</strong><img src="assets/img/plus.svg" class="q3i" width="25px" height="25px;" alt=""/>
+          </div>                  
+          <div id="q3" class="collapse">Решение SAP BI (SAP Business Intelligence) - система бизнес-анализа, позволяющая осуществлять стратегический анализ данных и поддержку процесса принятия управленческих решений в компании. Предназначена для предоставления доступа и обработки информации, содержащейся в различных системах или базах данных  организаций, ее анализа. </div>
         </label>
       </div>
 
       <div class="position-relative">
-        <label class="list-group-item py-3 pe-5">
-          <strong class="fw-semibold">Case Lab WEB</strong>
-          <span class="d-block small opacity-75">Марафон Case Lab — это возможность получить практический опыт решения кейсов под руководством экспертов отрасли для твоей профессиональной деятельности, а также удобный формат для прохождения учебной и производственной практики.
+        <label class="list-group-item py-3 pe-5" data-toggle="collapse" data-target="#q4">
+          <div class="d-flex justify-content-between">
+            <strong class="fw-semibold">Case Lab WEB</strong><img src="assets/img/plus.svg" class="q4i" width="25px" height="25px;" alt=""/>
+          </div>            
+          <div id="q4" class="collapse">Марафон Case Lab — это возможность получить практический опыт решения кейсов под руководством экспертов отрасли для твоей профессиональной деятельности, а также удобный формат для прохождения учебной и производственной практики.
 <br>
-Ты научишься создавать, настраивать и кастомизировать несложные сайты, а также на практике попробуешь работу в scrum-команде. Программа подходит для всех, кто начинает делать первые шаги к построению карьеры в области IT.</span>
+Ты научишься создавать, настраивать и кастомизировать несложные сайты, а также на практике попробуешь работу в scrum-команде. Программа подходит для всех, кто начинает делать первые шаги к построению карьеры в области IT.</div>
         </label>
       </div>
       <div class="position-relative">
-        <label class="list-group-item py-3 pe-5">
-          <strong class="fw-semibold">Case Lab JavaScript</strong>
-          <span class="d-block small opacity-75">Марафон Case Lab — это возможность получить практический опыт решения кейсов под руководством экспертов отрасли для твоей профессиональной деятельности, а также удобный формат для прохождения учебной и производственной практики
+        <label class="list-group-item py-3 pe-5" data-toggle="collapse" data-target="#q5">
+          <div class="d-flex justify-content-between">
+            <strong class="fw-semibold">Case Lab JavaScript</strong><img src="assets/img/plus.svg" class="q5i" width="25px" height="25px;" alt=""/>
+          </div>              
+          <div id="q5" class="collapse">Марафон Case Lab — это возможность получить практический опыт решения кейсов под руководством экспертов отрасли для твоей профессиональной деятельности, а также удобный формат для прохождения учебной и производственной практики
 Ты изучишь основы JavaScript и TypeScript и получишь практический опыт решения кейсов под руководством экспертов отрасли для твоей профессиональной деятельности 
 <br>
-Лучшие участники получат приглашение на оплачиваемую стажировку в Гринатом и другие предприятия отрасли</span>
+Лучшие участники получат приглашение на оплачиваемую стажировку в Гринатом и другие предприятия отрасли</div>
         </label>
       </div>
       <div class="position-relative">
-        <label class="list-group-item py-3 pe-5">
-          <strong class="fw-semibold">Программа 1С</strong>
-          <span class="d-block small opacity-75">1С — самая популярная система учёта в России и СНГ. С ее помощью можно считать зарплату сотрудников, контролировать расчёты с подрядчиками, клиентами и многое другое.
+        <label class="list-group-item py-3 pe-5" data-toggle="collapse" data-target="#q6">
+          <div class="d-flex justify-content-between">
+            <strong class="fw-semibold">Программа 1С</strong><img src="assets/img/plus.svg" class="q6i" width="25px" height="25px;" alt=""/>
+          </div>             
+          <div id="q6" class="collapse">1С — самая популярная система учёта в России и СНГ. С ее помощью можно считать зарплату сотрудников, контролировать расчёты с подрядчиками, клиентами и многое другое.
 <br>
-На марафоне Case Lab 1C на примере лучших мировых и отечественных практик ты рассмотришь инновационные решения для автоматизации деятельности предприятия.</span>
+На марафоне Case Lab 1C на примере лучших мировых и отечественных практик ты рассмотришь инновационные решения для автоматизации деятельности предприятия.</div>
         </label>
       </div>      
     </div>     
@@ -106,19 +123,19 @@
     <div class="container" style="margin-top: 30px;">
     <div class="row"> 
       <div class="col-md-6 col-sm-12 form-signin authform">
-        <form method="POST" modelAttribute="userForm">
+        <form method="GET" action="/login" modelAttribute="userForm">
           <h1 class="h3 mb-3 fw-normal mr-auto ml-auto">Введите данные в форме</h1>
           <div class="form-floating">
-            <label for="phone">ФИО</label>
-            <input type="text" class="form-control w-75 mx-auto" name="name" id="name" placeholder="ФИО">
+            <label for="fio">ФИО</label>
+            <input type="text" class="form-control w-75 mx-auto" name="fio" id="fio" placeholder="ФИО">
           </div>          
           <div class="form-floating">
-            <label for="email">Email</label>
-            <input type="email" class="form-control w-75 mx-auto" name="email" id="email" placeholder="example@site.com">
+            <label for="mail">Email</label>
+            <input type="mail" class="form-control w-75 mx-auto" name="mail" id="mail" placeholder="example@site.com">
           </div>
           <div class="form-floating">
-            <label for="phone">Номер телефона</label>
-            <input type="tel" class="form-control w-75 mx-auto" name="phone" id="phone" placeholder="+79880000000">
+            <label for="telephone_number">Номер телефона</label>
+            <input type="tel" class="form-control w-75 mx-auto" name="telephone_number" id="telephone_number" placeholder="+79880000000">
           </div>       
 
           <button class="w-75 btn btn-lg btn-primary" style="margin-top: 30px;" type="submit">Войти</button>
@@ -141,10 +158,66 @@
 
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
     <script>window.jQuery || document.write('<script src="assets/js/vendor/jquery-slim.min.js"><\/script>')</script>
-    <script src="/assets/js/vendor/popper.min.js"></script>
-    <script src="/dist/js/bootstrap.min.js"></script>
-    <script src="/assets/js/vendor/holder.min.js"></script>
+    <script src="assets/js/vendor/popper.min.js"></script>
+    <script src="dist/js/bootstrap.min.js"></script>
+    <script src="assets/js/vendor/holder.min.js"></script>
     <script>
+
+    $('#q1').on('show.bs.collapse', function () {
+      const image = document.querySelector('.q1i');
+      image.setAttribute('src', 'assets/img/123.gif');
+    })
+    $('#q1').on('hide.bs.collapse', function () {
+      const image = document.querySelector('.q1i');
+      image.setAttribute('src', 'assets/img/plus.svg');
+    })
+
+
+    $('#q2').on('show.bs.collapse', function () {
+      const image = document.querySelector('.q2i');
+      image.setAttribute('src', 'assets/img/123.gif');
+    })
+    $('#q2').on('hide.bs.collapse', function () {
+      const image = document.querySelector('.q2i');
+      image.setAttribute('src', 'assets/img/plus.svg');
+    })
+
+    $('#q3').on('show.bs.collapse', function () {
+      const image = document.querySelector('.q3i');
+      image.setAttribute('src', 'assets/img/123.gif');
+    })
+    $('#q3').on('hide.bs.collapse', function () {
+      const image = document.querySelector('.q3i');
+      image.setAttribute('src', 'assets/img/plus.svg');
+    })
+
+    $('#q4').on('show.bs.collapse', function () {
+      const image = document.querySelector('.q4i');
+      image.setAttribute('src', 'assets/img/123.gif');
+    })
+    $('#q4').on('hide.bs.collapse', function () {
+      const image = document.querySelector('.q4i');
+      image.setAttribute('src', 'assets/img/plus.svg');
+    })
+
+    $('#q5').on('show.bs.collapse', function () {
+      const image = document.querySelector('.q5i');
+      image.setAttribute('src', 'assets/img/123.gif');
+    })
+    $('#q5').on('hide.bs.collapse', function () {
+      const image = document.querySelector('.q5i');
+      image.setAttribute('src', 'assets/img/plus.svg');
+    })
+
+    $('#q6').on('show.bs.collapse', function () {
+      const image = document.querySelector('.q6i');
+      image.setAttribute('src', 'assets/img/123.gif');
+    })
+    $('#q6').on('hide.bs.collapse', function () {
+      const image = document.querySelector('.q6i');
+      image.setAttribute('src', 'assets/img/plus.svg');
+    })    
+
       // Example starter JavaScript for disabling form submissions if there are invalid fields
       (function() {
         'use strict';
