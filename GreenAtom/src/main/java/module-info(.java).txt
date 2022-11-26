@@ -1,0 +1,8 @@
+module GreenAtom {
+	exports com.boots.entity;
+	exports com.boots.service;
+	exports com.boots.controller;
+	exports com.boots;
+	exports com.boots.config;
+	exports com.boots.repository;
+}
