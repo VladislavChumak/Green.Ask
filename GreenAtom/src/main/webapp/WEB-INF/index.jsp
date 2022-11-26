@@ -23,7 +23,7 @@
   <div class="navbar navbar-white bg-white shadow-sm">
     <div class="container">
       <a href="#" class="navbar-brand d-flex align-items-center">
-        <img src="assets/img/logo.svg" alt="" height="50">
+        <img src="/assets/img/logo.svg" alt="" height="50">
       </a>
       <div class="text-black font-weight-bold">
         IT-кадры для атомной области
