@@ -22,10 +22,11 @@ public class QuizControler {
     	return new ResponseEntity<ArrayList<String>>(userService.getQuestion(task, Integer.valueOf(question)), HttpStatus.OK);
     }
     
-    @GetMapping(value = "checkans/{task}/{question}")
+    @GetMapping(value = "checkans/{task}/{question}/{answer}")
     public ResponseEntity<ArrayList<String>> GetRightAnswer(@PathVariable(name = "task", required = true) String task, 
-    		@PathVariable(name = "question", required = true)String question) {
-    	return new ResponseEntity<ArrayList<String>>(userService.getRightAnswer(task, Integer.valueOf(question)), HttpStatus.OK);
+    		@PathVariable(name = "question", required = true)String question,
+    		@PathVariable(name = "answer", required = true)String answer) {
+    	return new ResponseEntity<ArrayList<String>>(userService.getRightAnswer(task, Integer.valueOf(question), answer), HttpStatus.OK);
     }
     
 }
