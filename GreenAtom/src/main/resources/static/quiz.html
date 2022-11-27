@@ -54,29 +54,11 @@
         <p class="numquiz"><span>1</span>/<span>40</span></p>
         <p class="quest">Вопрос</p>
         <hr/>
-        <h3>Заходит как-то улитка в бар...</h3>
+        <h3 id="question">Вопрос</h3>
       </div>
       <div class="container">
-          <div class="list-group list-group-checkable d-grid gap-2 border-0 w-auto" style="margin-top: 5px;">
-            <input class="list-group-item-check pe-none" type="radio" name="listGroupCheckableRadios" id="listGroupCheckableRadios1" value="" checked>
-            <label class="list-group-item rounded-3 py-3" for="listGroupCheckableRadios1" style="margin-bottom: 15px;">
-              Ответ 1
-            </label>
+          <div class="list-group list-group-checkable d-grid gap-2 border-0 w-auto" id="parbody" style="margin-top: 5px;">
 
-            <input class="list-group-item-check pe-none" type="radio" name="listGroupCheckableRadios" id="listGroupCheckableRadios2" value="">
-            <label class="list-group-item rounded-3 py-3" for="listGroupCheckableRadios2" style="margin-bottom: 15px;">
-              Ответ 2
-            </label>
-
-            <input class="list-group-item-check pe-none" type="radio" name="listGroupCheckableRadios" id="listGroupCheckableRadios3" value="">
-            <label class="list-group-item rounded-3 py-3" for="listGroupCheckableRadios3" style="margin-bottom: 15px;">
-              Ответ 3
-            </label>
-
-            <input class="list-group-item-check pe-none" type="radio" name="listGroupCheckableRadios" id="listGroupCheckableRadios4" value="">
-            <label class="list-group-item rounded-3 py-3" for="listGroupCheckableRadios4" style="margin-bottom: 15px;">
-              Ответ 4
-            </label>
           </div>
           <button class="btn btn-primary btn-lg btn-block ansbut" type="submit">Ответить</button>
       </div>    
@@ -90,6 +72,40 @@
         <p class="mb-1">&copy; 2022 Green Ask</p>
       </footer>
     </div>
+
+
+    <script type="text/javascript">
+    	let params = (new URL(document.location)).searchParams; 
+      	let name = params.get("name");
+
+      	num = 1;
+
+      	const xhr = new XMLHttpRequest();
+        xhr.open('GET', "/quiz/"+name+"/"+num, false);
+        xhr.send();
+        let release = JSON.parse(xhr.status);
+
+        let question = release[0];
+        let count = release.length -1;
+
+        answers = Array();
+        for (var i = 1; i < count; i++) {
+        	answers.push(release[i]);
+        }
+
+        document.getElementsById("question").textContent(question);
+
+
+        let count = answers.count; 
+        for (var i = 0; i < count; i++) {
+          	document.getElementsById("parbody").insertAdjacentHTML("afterbegin", `            <input class="list-group-item-check pe-none" type="radio" name="listGroupCheckableRadios" id="listGroupCheckableRadios`+i+`" value="">
+            <label class="list-group-item rounded-3 py-3" for="listGroupCheckableRadios`+i+`" style="margin-bottom: 15px;">
+              `+answers[i]+`
+            </label>`);
+        }
+
+
+    </script>
 
     <!-- Bootstrap core JavaScript
     ================================================== -->
