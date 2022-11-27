@@ -74,6 +74,7 @@
 <script type="text/javascript">
     let params = (new URL(document.location)).searchParams; 
     let name = params.get("name");    
+    let scored = params.get("scored");   
 
     let max;
     let scored;    
@@ -86,7 +87,6 @@
     let release = JSON.parse(xhr.responseText);
 
     max = release[0];
-    scored = release[1];
     procent = (scored/max)*100;
 
     if(procent>90) {
