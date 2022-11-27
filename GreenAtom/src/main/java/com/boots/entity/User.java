@@ -32,12 +32,14 @@ public class User implements UserDetails{
     private Set<Vacancy> vacancy;
     
     
+    @OneToMany(mappedBy = "users", cascade = CascadeType.ALL)
+    private Set<Users_vacancy> users_vacancy;
+    
     public User() {}
 
     public String getFio() {
 		return fio;
 	}
-
 	public void setFio(String fio) {
 		this.fio = fio;
 	}

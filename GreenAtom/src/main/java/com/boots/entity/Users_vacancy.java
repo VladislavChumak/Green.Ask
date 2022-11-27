@@ -1,9 +1,17 @@
 package com.boots.entity;
 
+import java.util.Set;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
 
 @Entity
@@ -15,7 +23,14 @@ public class Users_vacancy {
 	private long userscod;
 	private long vacancyscod;
 	private int result; 
-
+	@ManyToOne
+    @PrimaryKeyJoinColumn
+    private Vacancy vacancy;
+	
+	@ManyToOne
+    @PrimaryKeyJoinColumn
+    private User users;
+    
 	public Users_vacancy() {
 		result = 0;
 	}

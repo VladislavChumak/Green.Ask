@@ -77,7 +77,7 @@
     let scored = params.get("scored");   
 
     let max;
-    let scored;    
+    scored;    
     let procent;
     let statuser;
 
@@ -99,10 +99,10 @@
       statuser = "BEGINNER"
     }
 
-    document.getElementbyId('max').innerHTML = max;
-    document.getElementbyId('scored').innerHTML = scored;
-    document.getElementbyId('procent').innerHTML = procent;
-    document.getElementbyId('statuser').innerHTML = statuser;
+	document.getElementById("max").innerHTML = max; 
+    document.getElementById("scored").innerHTML = scored;
+    document.getElementById("procent").innerHTML = procent;
+    document.getElementById("statuser").innerHTML = statuser;
 
 </script>
     <div class="container">
