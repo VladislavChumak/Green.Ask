@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
@@ -21,6 +22,10 @@ public class QuizControler {
     		@PathVariable(name = "question", required = true)String question) {
     	return new ResponseEntity<ArrayList<String>>(userService.getQuestion(task, Integer.valueOf(question)), HttpStatus.OK);
     }
+    @GetMapping(value = "/quiz/end")
+    public String getCongratulation() {
+    	return "redirect:/finally";
+    }
     
     @GetMapping(value = "checkans/{task}/{question}/{answer}")
     public ResponseEntity<ArrayList<String>> GetRightAnswer(@PathVariable(name = "task", required = true) String task, 
@@ -29,4 +34,9 @@ public class QuizControler {
     	return new ResponseEntity<ArrayList<String>>(userService.getRightAnswer(task, Integer.valueOf(question), answer), HttpStatus.OK);
     }
     
+    @GetMapping("/quiz/{name}")
+    public String selectVacancy(@PathVariable(name = "name", required = true) String vacancy_name, Model model) {
+    	//userService.addUserVacancy(vacancy_name);
+    	return "redirect:/finally?name="+vacancy_name;
+    }
 }

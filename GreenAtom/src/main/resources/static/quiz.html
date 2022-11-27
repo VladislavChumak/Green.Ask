@@ -51,7 +51,7 @@
 </style>
     <div class="container">
       <div class="py-5 text-center">
-        <p class="numquiz"><span>1</span>/<span>10</span></p>
+        <p class="numquiz"><span id="counter">1</span>/<span>10</span></p>
         <p class="quest">Вопрос</p>
         <hr/>
         <h3 id="question">Вопрос</h3>
@@ -95,17 +95,23 @@
           let release = JSON.parse(xhr.responseText);
 
           let count = release.length;
-          let question = release[0];
-          document.getElementById("question").innerHTML = question;
-		  document.getElementById("parbody").innerHTML = "";
-          
-          for (var i = 1; i < count; i++) {
-            document.getElementById("parbody").innerHTML = document.getElementById("parbody").innerHTML+
-            "<input class=\"list-group-item-check pe-none\" type=\"radio\" name=\"listGroupCheckableRadios\" id=\"listGroupCheckableRadios"+i+"\" name2=\""+release[i]+"\" value=\""+release[i]+"\"/>"+
-            "<label class=\"list-group-item rounded-3 py-3 borderlab\" for=\"listGroupCheckableRadios"+i+"\" style=\"margin-bottom: 15px;\" name2=\""+release[i]+"\"\>"+release[i]+"</label>";
-        
+		  console.log(count);
+		  if (count>0){
+			  let question = release[0];
+			  document.getElementById("question").innerHTML = question;
+			  document.getElementById("parbody").innerHTML = "";
+			  
+			  for (var i = 1; i < count; i++) {
+				document.getElementById("parbody").innerHTML = document.getElementById("parbody").innerHTML+
+				"<input class=\"list-group-item-check pe-none\" type=\"radio\" name=\"listGroupCheckableRadios\" id=\"listGroupCheckableRadios"+i+"\" name2=\""+release[i]+"\" value=\""+release[i]+"\"/>"+
+				"<label class=\"list-group-item rounded-3 py-3 borderlab\" for=\"listGroupCheckableRadios"+i+"\" style=\"margin-bottom: 15px;\" name2=\""+release[i]+"\"\>"+release[i]+"</label>";
+			
+			  }
+			  return release;
+		  }
+		  else {
+			window.location.href = "http://"+document.location.host+"/quiz/end";
           }
-          return release;
         }
 		function sendgo() {      
 			let ans = document.querySelector('input[name="listGroupCheckableRadios"]:checked').value;
@@ -135,6 +141,8 @@
 		  document.getElementById('continue_button').setAttribute("disabled",'');
 
           num = num + 1;
+		  document.getElementById('counter').innerHTML = num; 
+		  
           answers = set_quiz(name, num)
 
         }

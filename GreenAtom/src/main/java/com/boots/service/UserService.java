@@ -48,16 +48,17 @@ public class UserService implements UserDetailsService {
     @Transactional
     public boolean saveUser(User user) {
     	if (em.createQuery("SELECT u FROM User u "
-    			+ "Where u.telephone_number = :number or u.mail= :mail", User.class)
+    			+ "Where length(u.telephone_number) > 11 and u.telephone_number = :number or u.mail= :mail", User.class)
     			.setParameter("number", user.getTelephone_number())
     			.setParameter("mail", user.getMail()).getResultList().size()!=0) {
-           return false;
+    	    return false;
         }
     	System.out.println(user.getFio());
     	user.setRoles(Collections.singleton(em.find(Role.class, 1L)));
     	String code = "1234";
     	//Mail.sendMessage(user.getMail(), code);
     	user.setPassword(code);
+    	System.out.println(user.getFio());
     	em.persist(user);
     	return true;
     }
@@ -157,27 +158,29 @@ public class UserService implements UserDetailsService {
     @SuppressWarnings("unchecked")
 	public ArrayList<String> getQuestion(String vacancy, int number){
     	ArrayList<String> list = new ArrayList<String>();
-    	Questions q = (Questions) em.createQuery("Select q From Questions q, Vacancy_questions vq, Vacancy v "
-    			+ "Where v.vacancy_name = :vacancy "
-    			+ "and v.vacancyscod = vq.vacancyscod "
-      			+ "and vq.question_number = :number "
-    			+ "and vq.questionscod = q.questionscod")
-    			.setParameter("vacancy", vacancy)
-    			.setParameter("number", number)
-    			.getResultList().get(0);
-    	list.add(q.getQuestionName());
-    	ArrayList<Answers> alist = new ArrayList<Answers> (
-    			em.createQuery("Select a From Questions q, Question_answers qa, Answers a "
-	    			+ "Where q.questionscod = :questionscod "
-	    			+ "and qa.questionscod = q.questionscod "
-	    			+ "and qa.answerscod = a.answerscod")
-	    			.setParameter("questionscod", q.getQuestionscod())
-	    			.getResultList());
-    	System.out.println(alist.size());
-    	for(Answers a : alist) {
-    		list.add(a.getAnswerName());
+    	try {
+	    	Questions q = (Questions) em.createQuery("Select q From Questions q, Vacancy_questions vq, Vacancy v "
+	    			+ "Where v.vacancy_name = :vacancy "
+	    			+ "and v.vacancyscod = vq.vacancyscod "
+	      			+ "and vq.question_number = :number "
+	    			+ "and vq.questionscod = q.questionscod")
+	    			.setParameter("vacancy", vacancy)
+	    			.setParameter("number", number)
+	    			.getResultList().get(0);
+	    	list.add(q.getQuestionName());
+	    	ArrayList<Answers> alist = new ArrayList<Answers> (
+	    			em.createQuery("Select a From Questions q, Question_answers qa, Answers a "
+		    			+ "Where q.questionscod = :questionscod "
+		    			+ "and qa.questionscod = q.questionscod "
+		    			+ "and qa.answerscod = a.answerscod")
+		    			.setParameter("questionscod", q.getQuestionscod())
+		    			.getResultList());
+	    	System.out.println(alist.size());
+	    	for(Answers a : alist) {
+	    		list.add(a.getAnswerName());
+	    	}
     	}
-    	
+    	catch(Exception e){}
     	return list;
     }
 }
