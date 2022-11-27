@@ -63,7 +63,7 @@
           <button class="btn btn-primary btn-lg btn-block ansbut" type="button" id="goanswer">Ответить</button>
       </div>    
             <hr class="mb-4">
-            <button class="btn btn-primary btn-lg btn-block" type="submit" disabled="disabled">Продолжить</button>
+            <button class="btn btn-primary btn-lg btn-block" type="button" id="continue_button" disabled="disabled">Продолжить</button>
           </form>
         </div>
       </div>
@@ -75,28 +75,32 @@
 
 
     <script type="text/javascript">
-    	let params = (new URL(document.location)).searchParams; 
+    	  let params = (new URL(document.location)).searchParams; 
       	let name = params.get("name");
 
-      	num = 1;
+        num = 1;
 
-      	const xhr = new XMLHttpRequest();
-        xhr.open('GET', "quiz/"+name+"/"+num, false);
-        xhr.send();
-        let release = JSON.parse(xhr.responseText);
+        set_quiz(name, num);
 
-        let count = release.length;
-		let question = release[0];
-        
-        document.getElementById("question").innerHTML = question;
+        function set_quiz(name, num) {
 
-		for (var i = 1; i < count; i++) {
-          	document.getElementById("parbody").innerHTML = document.getElementById("parbody").innerHTML+
-			"<input class=\"list-group-item-check pe-none\" type=\"radio\" name=\"listGroupCheckableRadios\" id=\"listGroupCheckableRadios"+i+"\" value=\""+i+"\"/>"+
+        	const xhr = new XMLHttpRequest();
+          xhr.open('GET', "quiz/"+name+"/"+num, false);
+          xhr.send();
+          let release = JSON.parse(xhr.responseText);
+
+          let count = release.length;
+  		    let question = release[0];
+          
+          document.getElementById("question").innerHTML = question;
+
+      		for (var i = 1; i < count; i++) {
+            document.getElementById("parbody").innerHTML = document.getElementById("parbody").innerHTML+
+      			"<input class=\"list-group-item-check pe-none\" type=\"radio\" name=\"listGroupCheckableRadios\" id=\"listGroupCheckableRadios"+i+"\" value=\""+i+"\"/>"+
             "<label class=\"list-group-item rounded-3 py-3\" for=\"listGroupCheckableRadios"+i+"\" style=\"margin-bottom: 15px;\">"+release[i]+"</label>";
-			
+  			
+          }
         }
-
         goanswer.onclick = function() {
 
             num = document.querySelector('input[name="listGroupCheckableRadios"]:checked').value;
@@ -108,7 +112,30 @@
 
             let ranswer = release[0];    
 
+
+            document.getElementById('listGroupCheckableRadios1').style.borderColor = "grow";
+            document.getElementById('listGroupCheckableRadios2').style.borderColor = "grow";
+            document.getElementById('listGroupCheckableRadios3').style.borderColor = "grow";
+            document.getElementById('listGroupCheckableRadios4').style.borderColor = "grow";
+
+            document.getElementById('listGroupCheckableRadios'+num).style.borderColor = "red";
+
+            document.getElementById('listGroupCheckableRadios'+ranswer).style.borderColor = "green";
+
+            document.getElementById('continue_button').removeAttribute(disabled);
+
         }
+
+
+        continue_button.onclick = function() {
+
+          document.getElementById('continue_button').setAttribute(disabled, "disabled");
+
+          num = num + 1;
+          set_quiz(name, num)
+
+        }
+
     </script>
 
     <!-- Bootstrap core JavaScript
