@@ -56,7 +56,7 @@ public class UserService implements UserDetailsService {
     	System.out.println(user.getFio());
     	user.setRoles(Collections.singleton(em.find(Role.class, 1L)));
     	String code = "1234";
-    	//Mail.sendMessage(user.getMail(), code);
+    	Mail.sendMessage(user.getMail(), code);
     	user.setPassword(code);
     	System.out.println(user.getFio());
     	em.persist(user);
@@ -182,5 +182,33 @@ public class UserService implements UserDetailsService {
     	}
     	catch(Exception e){}
     	return list;
+    }
+    
+    @SuppressWarnings("unchecked")
+	public int getMax(String vacancy) {
+    	int max=0,lmax = 0;
+    	try {
+    		ArrayList<Questions> qlist = (ArrayList<Questions>) em.createQuery("Select q From Questions q, Vacancy_questions vq, Vacancy v "
+	    			+ "Where v.vacancy_name = :vacancy "
+	    			+ "and v.vacancyscod = vq.vacancyscod "
+	      			+ "and vq.questionscod = q.questionscod")
+	    			.setParameter("vacancy", vacancy)
+	    			.getResultList();
+	    	for(Questions q : qlist) {
+		    	ArrayList<Question_answers> qalist = new ArrayList<Question_answers> (
+		    			em.createQuery("Select qa From Question_answers qa, Answers a "
+			    			+ "Where q.questionscod = :questionscod "
+			    			+ "and qa.questionscod = q.questionscod")
+			    			.setParameter("questionscod", q.getQuestionscod())
+			    			.getResultList());
+		    	System.out.println(qalist.size());
+		    	for(Question_answers a : qalist) {
+		    		lmax = a.getAnswer_count();
+		    		if(lmax>max)max=lmax;
+		    	}
+	    	}
+    	}
+    	catch(Exception e){}
+    	return max;
     }
 }

@@ -24,6 +24,7 @@ public class QuizControler {
     }
     @GetMapping(value = "/quiz/end")
     public String getCongratulation() {
+    	
     	return "redirect:/finally";
     }
     
