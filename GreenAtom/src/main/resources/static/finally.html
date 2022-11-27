@@ -71,6 +71,40 @@
     margin-bottom: 20px;
   }
 </style>
+<script type="text/javascript">
+    let params = (new URL(document.location)).searchParams; 
+    let name = params.get("name");    
+
+    let max;
+    let scored;    
+    let procent;
+    let statuser;
+
+    const xhr = new XMLHttpRequest();
+    xhr.open('GET', "quiz/result/"+name, false);
+    xhr.send();
+    let release = JSON.parse(xhr.responseText);
+
+    max = release[0];
+    scored = release[1];
+    procent = (scored/max)*100;
+
+    if(procent>90) {
+        statuser = "SENIOR";
+    } else if(procent>60) {
+        statuser = "MIDDLE"
+    } else if(procent>35) {
+      statuser = "JUNIOR"
+    } else {
+      statuser = "BEGINNER"
+    }
+
+    document.getElementbyId('max').innerHTML = max;
+    document.getElementbyId('scored').innerHTML = scored;
+    document.getElementbyId('procent').innerHTML = procent;
+    document.getElementbyId('statuser').innerHTML = statuser;
+
+</script>
     <div class="container">
       <div class="py-5 text-center">
         <img class="d-block mx-auto mb-4" src="assets/img/prize.svg" alt="" width="250">
@@ -81,29 +115,29 @@
         <div class="row restat_row">
           <div class="col-md-4 col-sm-12 resstat_all resstat_border">
             <p>Ваш результат:</p>
-            <h3>70%</p>
+            <h3 id="procent">70%</p>
           </div>
           <div class="col-md-4 col-sm-12 resstat_all resstat_border">
             <p>Всего:</p>
-            <h3><span>25</span> из <span>30</span></p>
+            <h3><span id="scored">25</span> из <span id="max">30</span></p>
           </div>      
           <div class="col-md-4 col-sm-12 resstat_all">
             <p>Вы лучше чем:</p>
-            <h3>30%</p>
+            <h3>100%</p>
           </div>
         </div>
         <div class="resstat_level">
           <p>Ваш уровень:</p>
-          <h2>Beginner</h2>
+          <h2 id="statuser">Beginner</h2>
         </div>
       </div>
       <p class="resnot">Ожидайте звонка куратора на ваш телефон</p>
       <div class="row">
         <div class="col-md-6 col-sm-12">
-            <button class="w-50 btn btn-lg btn-primary mr-auto ml-auto" style="display:block;margin-top: 40px;" type="button">Вернуться</button>
+            <a class="w-50 btn btn-lg btn-primary mr-auto ml-auto" style="display:block;margin-top: 40px;" href="/select">Вернуться</a>
         </div>
         <div class="col-md-6 col-sm-12">
-          <button class="w-50 btn btn-lg btn-primary mr-auto ml-auto" style="display: block;margin-top: 40px;" type="button">Выйти</button>
+          <a class="w-50 btn btn-lg btn-primary mr-auto ml-auto" style="display: block;margin-top: 40px;" href="/logout">Выйти</a>
         </div>
       </div>  
       <footer class="my-5 pt-5 text-muted text-center text-small">
