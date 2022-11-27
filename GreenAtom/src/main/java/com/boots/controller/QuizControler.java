@@ -21,4 +21,11 @@ public class QuizControler {
     		@PathVariable(name = "question", required = true)String question) {
     	return new ResponseEntity<ArrayList<String>>(userService.getQuestion(task, Integer.valueOf(question)), HttpStatus.OK);
     }
+    
+    @GetMapping(value = "checkans/{task}/{question}")
+    public ResponseEntity<ArrayList<String>> GetRightAnswer(@PathVariable(name = "task", required = true) String task, 
+    		@PathVariable(name = "question", required = true)String question) {
+    	return new ResponseEntity<ArrayList<String>>(userService.getRightAnswer(task, Integer.valueOf(question)), HttpStatus.OK);
+    }
+    
 }

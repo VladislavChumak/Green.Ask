@@ -103,6 +103,28 @@ public class UserService implements UserDetailsService {
     	else return false;
     }
     
+    public ArrayList<String> getRightAnswer(String vacancy, int number){
+    	ArrayList<String> list = new ArrayList<String>();
+    	Questions q = (Questions) em.createQuery("Select q From Questions q, Vacancy_questions vq, Vacancy v "
+    			+ "Where v.vacancy_name = :vacancy "
+    			+ "and v.vacancyscod = vq.vacancyscod "
+      			+ "and vq.question_number = :number "
+    			+ "and vq.questionscod = q.questionscod")
+    			.setParameter("vacancy", vacancy)
+    			.setParameter("number", number)
+    			.getResultList().get(0);
+    	list.add(q.getQuestionName());
+    	Answers a =
+    			(Answers) em.createQuery("Select a From Questions q, Question_answers qa, Answers a "
+			+ "Where q.questionscod = :questionscod "
+			+ "and qa.questionscod = q.questionscod "
+			+ "and qa.answerscod = a.answerscod "
+			+ "and qa.answer_count>0")
+			.setParameter("questionscod", q.getQuestionscod())
+			.getResultList().get(0);
+    	list.add(a.getAnswerName());
+    	return list;
+    }
     @SuppressWarnings("unchecked")
 	public ArrayList<String> getQuestion(String vacancy, int number){
     	ArrayList<String> list = new ArrayList<String>();

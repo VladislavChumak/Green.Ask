@@ -13,6 +13,10 @@ public class Answers {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long answerscod;
 	private String answer_name; 
+
+	public long getAnswerscod() {
+		return answerscod;
+	}
 	
 	public String getAnswerName() {
 		return answer_name;
