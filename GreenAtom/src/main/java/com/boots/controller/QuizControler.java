@@ -1,6 +1,9 @@
 package com.boots.controller;
 
 import com.boots.service.UserService;
+
+import java.util.ArrayList;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -13,8 +16,9 @@ public class QuizControler {
     @Autowired
     private UserService userService;
 
-    @GetMapping(value = "quiz/{task}/{qestion}")
-    public ResponseEntity<?> isVacancyActive(@PathVariable(name = "task", required = true) String vacancy_name) {
-    	return userService.isVacancyActive(vacancy_name) ? new ResponseEntity<>(HttpStatus.OK) : new ResponseEntity<>(HttpStatus.FOUND);
+    @GetMapping(value = "/quiz/{task}/{qestion}")
+    public ResponseEntity<ArrayList<String>> isVacancyActive(@PathVariable(name = "task", required = true) String task, 
+    		@PathVariable(name = "question", required = true)String qestion) {
+    	return new ResponseEntity<ArrayList<String>>(userService.getQuestion(qestion, Integer.valueOf(task)), HttpStatus.OK);
     }
 }

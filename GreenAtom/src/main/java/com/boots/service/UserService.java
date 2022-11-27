@@ -1,7 +1,6 @@
 package com.boots.service;
 
-import com.boots.entity.Role;
-import com.boots.entity.User;
+import com.boots.entity.*;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -14,6 +13,7 @@ import org.springframework.transaction.annotation.Transactional;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
@@ -95,4 +95,22 @@ public class UserService implements UserDetailsService {
     	else return false;
     }
     
+    @SuppressWarnings("unchecked")
+	public ArrayList<String> getQuestion(String vacancy, int number){
+    	ArrayList<String> list = new ArrayList<String>();
+    	Questions q = (Questions) em.createQuery("Select q From Questions q, Vacancy_questions vq, Vacancy v "
+    			+ "Where v.vacancy_name = :vacancy "
+    			+ "and v.vacancyscod = vq.vacancyscod "
+    			+ "and vq.questionscod = :number").getResultList().get(0);
+    	list.add(q.getQuestionName());
+    	ArrayList<Answers> alist = new ArrayList<Answers> (em.createQuery("Select q From Questions q, Vacancy_questions vq, Vacancy v "
+    			+ "Where v.vacancy_name = :vacancy "
+    			+ "and v.vacancyscod = vq.vacancyscod "
+    			+ "and vq.questionscod = :number").getResultList());
+    	for(Answers a : alist) {
+    		list.add(a.getAnswerName());
+    	}
+    	
+    	return list;
+    }
 }
