@@ -79,8 +79,8 @@ public class UserService implements UserDetailsService {
     @Transactional
     public boolean addUserVacancy(String vacancy_name) {
     	System.out.println(vacancy_name+"\n\n\n");
-    	Vacancy v = (Vacancy)em.createQuery("Select v From Vacancy v "
-				+ "Where v.vacancy_name = :vacancy_name").setParameter("vacancy_name", vacancy_name).getResultList().get(0);
+    	Vacancy v = em.createQuery("Select v From Vacancy v Where v.vacancy_name = :vacancy_name", Vacancy.class)
+    			.setParameter("vacancy_name", vacancy_name).getResultList().get(0);
     	Users_vacancy uv = new Users_vacancy(user.getId(),v.getVacancyscod());
     	em.persist(uv);
     	return true;

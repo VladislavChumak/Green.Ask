@@ -22,10 +22,11 @@ public class QuizControler {
     		@PathVariable(name = "question", required = true)String question) {
     	return new ResponseEntity<ArrayList<String>>(userService.getQuestion(task, Integer.valueOf(question)), HttpStatus.OK);
     }
-    @GetMapping(value = "/quiz/end")
-    public String getCongratulation() {
-    	
-    	return "redirect:/finally";
+    @GetMapping(value = "/quiz/{name}/{score}")
+    public String getCongratulation(@PathVariable(name = "name", required = true) String name, 
+    		@PathVariable(name = "score", required = true)String score) {
+    		//userService.addUserVacancy(vacancy_name);
+    	return "redirect:/finally?name="+name+"&score = "+score;
     }
     
     @GetMapping(value = "checkans/{task}/{question}/{answer}")
