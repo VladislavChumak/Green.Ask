@@ -85,7 +85,7 @@
         xhr.send();
         let release = JSON.parse(xhr.responseText);
 
-        let count = release.length -1;
+        let count = release.length;
 		let question = release[0];
         
         document.getElementById("question").innerHTML = question;

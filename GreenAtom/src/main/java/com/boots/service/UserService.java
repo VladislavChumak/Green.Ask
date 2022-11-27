@@ -114,6 +114,7 @@ public class UserService implements UserDetailsService {
 	    			+ "and qa.answerscod = a.answerscod")
 	    			.setParameter("questionscod", q.getQuestionscod())
 	    			.getResultList());
+    	System.out.println(alist.size());
     	for(Answers a : alist) {
     		list.add(a.getAnswerName());
     	}
