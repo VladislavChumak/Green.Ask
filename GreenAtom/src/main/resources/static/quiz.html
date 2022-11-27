@@ -60,7 +60,7 @@
           <div class="list-group list-group-checkable d-grid gap-2 border-0 w-auto" id="parbody" style="margin-top: 5px;">
 
           </div>
-          <button class="btn btn-primary btn-lg btn-block ansbut" type="submit">Ответить</button>
+          <button class="btn btn-primary btn-lg btn-block ansbut" type="button" id="goanswer">Ответить</button>
       </div>    
             <hr class="mb-4">
             <button class="btn btn-primary btn-lg btn-block" type="submit" disabled="disabled">Продолжить</button>
@@ -97,7 +97,18 @@
 			
         }
 
+        goanswer.onclick = function() {
 
+            num = document.querySelector('input[name="listGroupCheckableRadios"]:checked').value;
+
+            const xhr = new XMLHttpRequest();
+            xhr.open('GET', "checkans/"+num, false);
+            xhr.send();
+            let release = JSON.parse(xhr.responseText);
+
+            let ranswer = release[0];    
+
+        }
     </script>
 
     <!-- Bootstrap core JavaScript
