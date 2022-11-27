@@ -18,7 +18,9 @@ public class Vacancy {
 	public String getName() {
 		return vacancy_cod;
 	}
-
+	public long getVacancyscod() {
+		return vacancyscod;
+	}
 	public void setName(String vacancy_cod) {
 		this.vacancy_cod= vacancy_cod;
 	}

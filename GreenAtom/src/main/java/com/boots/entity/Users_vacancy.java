@@ -14,6 +14,16 @@ public class Users_vacancy {
     private long users_vacancyscod;
 	private long userscod;
 	private long vacancyscod;
+	private int result; 
+
+	public Users_vacancy() {
+		result = 0;
+	}
+	public Users_vacancy(long userscod, long vacancyscod) {
+		this.userscod = userscod;
+		this.users_vacancyscod = vacancyscod;
+		result = 0;
+	}
 	public long getUserscod() {
 		return userscod;
 	}
@@ -25,5 +35,11 @@ public class Users_vacancy {
 	}
 	public void setVacancyscod(long vacancyscod) {
 		this.vacancyscod = vacancyscod;
+	}
+	public int getResult() {
+		return result;
+	}
+	public void setResult(int result) {
+		this.result = result;
 	}	
 }

@@ -76,6 +76,14 @@ public class UserService implements UserDetailsService {
         return em.createQuery("SELECT u FROM User u", User.class).getResultList();
     }
     
+    public boolean addUserVacancy(String vacancy_name) {
+    	Vacancy v = (Vacancy)em.createQuery("Select v From Vacancy v "
+				+ "Where v.vacancy_name = :vacancy_name").setParameter("vacancy_name", vacancy_name);
+    	Users_vacancy uv = new Users_vacancy(user.getId(),v.getVacancyscod());
+    	em.persist(uv);
+    	return true;
+    }
+    
     public boolean isVacancyActive(String vacancy_name) {
     	System.out.print(user != null);
     	if(user != null) {

@@ -16,7 +16,8 @@ public class SelectControler {
     
     @GetMapping("/select/{name}")
     public String selectVacancy(@PathVariable(name = "name", required = true) String vacancy_name, Model model) {
-        return "redirect:/quiz?name="+vacancy_name;
+    	userService.addUserVacancy(vacancy_name);
+    	return "redirect:/quiz?name="+vacancy_name;
     }
     
     @GetMapping(value = "/isVacancyActive/{name}")
