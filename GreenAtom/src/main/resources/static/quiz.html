@@ -83,6 +83,7 @@
         let name = params.get("name");
         let answers;
 
+        let score = 0;
         let num = 1;
 
         answers = set_quiz(name, num);
@@ -110,7 +111,7 @@
 			  return release;
 		  }
 		  else {
-			window.location.href = "http://"+document.location.host+"/quiz/end";
+			window.location.href = "http://"+document.location.host+"/quiz/"+name+"/"+score;
           }
         }
 		function sendgo() {      
@@ -124,6 +125,7 @@
             let ranswer = ranswerj[0];    
 			for (var i = 1; i < answers.length; i++) {
               if(answers[i]==ranswer) {
+                score = score + 1;
 				  document.querySelector('label[name2="'+answers[i]+'"]').style.borderColor = "green";
               } 
 			  else if(answers[i] == ans){
