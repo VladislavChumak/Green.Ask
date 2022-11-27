@@ -51,7 +51,7 @@
 </style>
     <div class="container">
       <div class="py-5 text-center">
-        <p class="numquiz"><span>1</span>/<span>40</span></p>
+        <p class="numquiz"><span>1</span>/<span>10</span></p>
         <p class="quest">Вопрос</p>
         <hr/>
         <h3 id="question">Вопрос</h3>
@@ -60,10 +60,10 @@
           <div class="list-group list-group-checkable d-grid gap-2 border-0 w-auto" id="parbody" style="margin-top: 5px;">
 
           </div>
-          <button class="btn btn-primary btn-lg btn-block ansbut" type="button" id="goanswer">Ответить</button>
+          <button class="btn btn-primary btn-lg btn-block ansbut" type="button" id="goanswer" onclick="sendgo()">Ответить</button>
       </div>    
             <hr class="mb-4">
-            <button class="btn btn-primary btn-lg btn-block" type="button" id="continue_button" disabled="disabled">Продолжить</button>
+            <button class="btn btn-primary btn-lg btn-block" type="button" id="continue_button" onclick="next_q()" disabled="disabled">Продолжить</button>
           </form>
         </div>
       </div>
@@ -72,14 +72,18 @@
         <p class="mb-1">&copy; 2022 Green Ask</p>
       </footer>
     </div>
-
+<style>
+.borderlab {
+	border-width: 10px;
+}
+</style>
 
     <script type="text/javascript">
         let params = (new URL(document.location)).searchParams; 
         let name = params.get("name");
         let answers;
 
-        num = 1;
+        let num = 1;
 
         answers = set_quiz(name, num);
 
@@ -92,46 +96,43 @@
 
           let count = release.length;
           let question = release[0];
-          
           document.getElementById("question").innerHTML = question;
-
+		  document.getElementById("parbody").innerHTML = "";
+          
           for (var i = 1; i < count; i++) {
             document.getElementById("parbody").innerHTML = document.getElementById("parbody").innerHTML+
-            "<input class=\"list-group-item-check pe-none\" type=\"radio\" name=\"listGroupCheckableRadios\" id=\"listGroupCheckableRadios"+i+"\" value=\""+release[i]+"\"/>"+
-            "<label class=\"list-group-item rounded-3 py-3\" for=\"listGroupCheckableRadios"+i+"\" style=\"margin-bottom: 15px;\">"+release[i]+"</label>";
+            "<input class=\"list-group-item-check pe-none\" type=\"radio\" name=\"listGroupCheckableRadios\" id=\"listGroupCheckableRadios"+i+"\" name2=\""+release[i]+"\" value=\""+release[i]+"\"/>"+
+            "<label class=\"list-group-item rounded-3 py-3 borderlab\" for=\"listGroupCheckableRadios"+i+"\" style=\"margin-bottom: 15px;\" name2=\""+release[i]+"\"\>"+release[i]+"</label>";
         
           }
           return release;
         }
-        goanswer.onclick = function() {      
-
-            let ans = document.querySelector('input[name="listGroupCheckableRadios"]:checked').value;
-
+		function sendgo() {      
+			let ans = document.querySelector('input[name="listGroupCheckableRadios"]:checked').value;
+			document.getElementById('listGroupCheckableRadios1').style.color = "green";
             const xhr = new XMLHttpRequest();
             xhr.open('GET', "checkans/"+name+"/"+num+"/"+ans, false);
             xhr.send();
             let ranswerj = JSON.parse(xhr.responseText);
 
             let ranswer = ranswerj[0];    
-
-            document.querySelector('input[value="'+ans+'"]').style.borderColor = "red";
-
-            for (var i = 1; i < answers.length; i++;) {
+			for (var i = 1; i < answers.length; i++) {
               if(answers[i]==ranswer) {
-                document.querySelector('input[value="'+answers[i]+'"]').style.borderColor = "green";
-              } else {
-                document.querySelector('input[value="'+answers[i]+'"]').style.borderColor = "grey";
+				  document.querySelector('label[name2="'+answers[i]+'"]').style.borderColor = "green";
+              } 
+			  else if(answers[i] == ans){
+				  document.querySelector('label[name2="'+answers[i]+'"]').style.borderColor = "red";
+             }
+			  else {
+                document.querySelector('label[name2="'+answers[i]+'"]').style.borderColor = "grey";
               }
             }
-
-            document.getElementById('continue_button').removeAttribute(disabled);
-
+			document.getElementById('continue_button').removeAttribute("disabled");
         }
 
 
-        continue_button.onclick = function() {
-
-          document.getElementById('continue_button').setAttribute(disabled, "disabled");
+        function next_q() {
+		  document.getElementById('continue_button').setAttribute("disabled",'');
 
           num = num + 1;
           answers = set_quiz(name, num)

@@ -75,10 +75,11 @@ public class UserService implements UserDetailsService {
     public List<User> usergtList(Long idMin) {
         return em.createQuery("SELECT u FROM User u", User.class).getResultList();
     }
-    
+    @Transactional
     public boolean addUserVacancy(String vacancy_name) {
+    	System.out.println(vacancy_name+"\n\n\n");
     	Vacancy v = (Vacancy)em.createQuery("Select v From Vacancy v "
-				+ "Where v.vacancy_name = :vacancy_name").setParameter("vacancy_name", vacancy_name);
+				+ "Where v.vacancy_name = :vacancy_name").setParameter("vacancy_name", vacancy_name).getResultList().get(0);
     	Users_vacancy uv = new Users_vacancy(user.getId(),v.getVacancyscod());
     	em.persist(uv);
     	return true;
@@ -122,16 +123,17 @@ public class UserService implements UserDetailsService {
 			.setParameter("questionscod", q.getQuestionscod())
 			.getResultList().get(0);
     	list.add(a.getAnswerName());
-    	addCount(q.getQuestionscod(), vacancy, answer);
+    	//addCount(q.getQuestionscod(), vacancy, answer);
     	return list;
-    }
+    } 
     
+    @Transactional
     public void addCount(long question, String vacancy, String answer) {
     	Question_answers qa = (Question_answers) em.createQuery("Select qa From Questions q, Question_answers qa, Answers a "
     			+ "Where q.questionscod = :questionscod "
     			+ "and qa.questionscod = q.questionscod "
     			+ "and qa.answerscod = a.answerscod "
-    			+ "and qa.answer_name = :answer")
+    			+ "and a.answer_name = :answer")
     			.setParameter("questionscod", question)
     			.setParameter("answer", answer)
     			.getResultList().get(0);
