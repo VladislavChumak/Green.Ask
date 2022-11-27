@@ -81,27 +81,20 @@
       	num = 1;
 
       	const xhr = new XMLHttpRequest();
-        xhr.open('GET', "/quiz/"+name+"/"+num, false);
+        xhr.open('GET', "quiz/"+name+"/"+num, false);
         xhr.send();
-        let release = JSON.parse(xhr.status);
+        let release = JSON.parse(xhr.responseText);
 
-        let question = release[0];
         let count = release.length -1;
+		let question = release[0];
+        
+        document.getElementById("question").innerHTML = question;
 
-        answers = Array();
-        for (var i = 1; i < count; i++) {
-        	answers.push(release[i]);
-        }
-
-        document.getElementsById("question").textContent(question);
-
-
-        let count = answers.count; 
-        for (var i = 0; i < count; i++) {
-          	document.getElementsById("parbody").insertAdjacentHTML("afterbegin", `            <input class="list-group-item-check pe-none" type="radio" name="listGroupCheckableRadios" id="listGroupCheckableRadios`+i+`" value="">
-            <label class="list-group-item rounded-3 py-3" for="listGroupCheckableRadios`+i+`" style="margin-bottom: 15px;">
-              `+answers[i]+`
-            </label>`);
+		for (var i = 1; i < count; i++) {
+          	document.getElementById("parbody").innerHTML = document.getElementById("parbody").innerHTML+
+			"<input class=\"list-group-item-check pe-none\" type=\"radio\" name=\"listGroupCheckableRadios\" id=\"listGroupCheckableRadios"+i+"\"/>"+
+            "<label class=\"list-group-item rounded-3 py-3\" for=\"listGroupCheckableRadios"+i+"\" style=\"margin-bottom: 15px;\">"+release[i]+"</label>";
+			
         }
 
 

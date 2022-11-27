@@ -14,6 +14,7 @@ public class Vacancy_questions {
     private long questions_vacancyscod;
 	private long questionscod;
 	private long vacancyscod;
+	private int question_number;
 	public long getQuestionscod() {
 		return questionscod;
 	}
@@ -25,5 +26,11 @@ public class Vacancy_questions {
 	}
 	public void setVacancyscod(long vacancyscod) {
 		this.vacancyscod = vacancyscod;
+	}
+	public int getQuestion_number() {
+		return question_number;
+	}
+	public void setQuestion_number(int question_number) {
+		this.question_number = question_number;
 	}	
 }

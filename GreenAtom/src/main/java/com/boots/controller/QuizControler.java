@@ -16,9 +16,9 @@ public class QuizControler {
     @Autowired
     private UserService userService;
 
-    @GetMapping(value = "/quiz/{task}/{qestion}")
-    public ResponseEntity<ArrayList<String>> isVacancyActive(@PathVariable(name = "task", required = true) String task, 
-    		@PathVariable(name = "question", required = true)String qestion) {
-    	return new ResponseEntity<ArrayList<String>>(userService.getQuestion(qestion, Integer.valueOf(task)), HttpStatus.OK);
+    @GetMapping(value = "quiz/{task}/{question}")
+    public ResponseEntity<ArrayList<String>> getQuestion(@PathVariable(name = "task", required = true) String task, 
+    		@PathVariable(name = "question", required = true)String question) {
+    	return new ResponseEntity<ArrayList<String>>(userService.getQuestion(task, Integer.valueOf(question)), HttpStatus.OK);
     }
 }

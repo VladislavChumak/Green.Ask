@@ -101,12 +101,19 @@ public class UserService implements UserDetailsService {
     	Questions q = (Questions) em.createQuery("Select q From Questions q, Vacancy_questions vq, Vacancy v "
     			+ "Where v.vacancy_name = :vacancy "
     			+ "and v.vacancyscod = vq.vacancyscod "
-    			+ "and vq.questionscod = :number").getResultList().get(0);
+      			+ "and vq.question_number = :number "
+    			+ "and vq.questionscod = q.questionscod")
+    			.setParameter("vacancy", vacancy)
+    			.setParameter("number", number)
+    			.getResultList().get(0);
     	list.add(q.getQuestionName());
-    	ArrayList<Answers> alist = new ArrayList<Answers> (em.createQuery("Select q From Questions q, Vacancy_questions vq, Vacancy v "
-    			+ "Where v.vacancy_name = :vacancy "
-    			+ "and v.vacancyscod = vq.vacancyscod "
-    			+ "and vq.questionscod = :number").getResultList());
+    	ArrayList<Answers> alist = new ArrayList<Answers> (
+    			em.createQuery("Select a From Questions q, Question_answers qa, Answers a "
+	    			+ "Where q.questionscod = :questionscod "
+	    			+ "and qa.questionscod = q.questionscod "
+	    			+ "and qa.answerscod = a.answerscod")
+	    			.setParameter("questionscod", q.getQuestionscod())
+	    			.getResultList());
     	for(Answers a : alist) {
     		list.add(a.getAnswerName());
     	}
