@@ -28,9 +28,11 @@ public class UserService implements UserDetailsService {
 	@Override
 	public UserDetails loadUserByUsername(String mail) throws UsernameNotFoundException {
 		System.out.println(mail);
-		user = em.createQuery("SELECT u FROM User u WHERE u.mail = :mail", User.class)
+		try {
+			user = em.createQuery("SELECT u FROM User u WHERE u.mail = :mail", User.class)
                 .setParameter("mail", mail).getSingleResult();
-        if (user == null) {
+		}
+		catch(Exception e) {
         	System.out.println("Упали((");
             throw new UsernameNotFoundException("User not found");
         }
@@ -49,11 +51,12 @@ public class UserService implements UserDetailsService {
     			+ "Where u.telephone_number = :number or u.mail= :mail", User.class)
     			.setParameter("number", user.getTelephone_number())
     			.setParameter("mail", user.getMail()).getResultList().size()!=0) {
-            return false;
+           return false;
         }
+    	System.out.println(user.getFio());
     	user.setRoles(Collections.singleton(em.find(Role.class, 1L)));
     	String code = "1234";
-    	Mail.sendMessage(user.getMail(), code);
+    	//Mail.sendMessage(user.getMail(), code);
     	user.setPassword(code);
     	em.persist(user);
     	return true;
@@ -77,11 +80,11 @@ public class UserService implements UserDetailsService {
     	System.out.print(user != null);
     	if(user != null) {
     		return 
-				em.createQuery("Select u From User u, users_vacancy uv, vacancy v "
+    			em.createQuery("Select u From User u, Users_vacancy uv, Vacancy v "
 						+ "Where u.userscod = uv.userscod "
 						+ "and u.userscod = :userscod "
 						+ "and uv.vacancyscod = v.vacancyscod "
-						+ "and v.vacancy_name = :vacancy_name", User.class)
+						+ "and v.vacancy_name = :vacancy_name")
 				.setParameter("userscod", user.getId())
 				.setParameter("vacancy_name", vacancy_name)
 				.getResultList().size()==0;

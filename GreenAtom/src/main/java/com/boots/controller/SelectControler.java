@@ -8,8 +8,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 public class SelectControler {
@@ -17,8 +15,13 @@ public class SelectControler {
     private UserService userService;
 
     @GetMapping("/select")
-    public String userList(Model model) {
-        return "select";
+    public String select(Model model) {
+        return "/select";
+    }
+    
+    @GetMapping("/select/{name}")
+    public String selectVacancy(@PathVariable(name = "name", required = true) String vacancy_name, Model model) {
+        return "redirect:/quiz";
     }
     
     @GetMapping(value = "/isVacancyActive/{name}")
