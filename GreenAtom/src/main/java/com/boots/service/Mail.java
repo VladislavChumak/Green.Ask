@@ -1,3 +1,4 @@
+
 package com.boots.service;
 import java.util.Properties;
 
@@ -11,9 +12,9 @@ import javax.mail.internet.MimeMessage;
 
 public class Mail {
 	public static void sendMessage(String to, String code) {
-        final String from = "botsarealive.404notfound@mail.ru";
+        final String from = " ";
 		
-        final String password = "hr3aVALuhLJPrgLbDqee";//
+        final String password = " ";//
 		
 		Properties properties = new Properties();
 		properties.put("mail.smtp.auth", "true");
